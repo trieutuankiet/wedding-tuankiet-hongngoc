@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tuấn Kiệt & Hồng Ngọc</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@300;400&display=swap" rel="stylesheet">
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+
+body{
+    font-family:'Montserrat',sans-serif;
+    background:#ffffff;
+    color:#333;
+    scroll-behavior:smooth;
+    overflow-x:hidden;
+}
+
+section{
+    padding:100px 20px;
+    text-align:center;
+    opacity:0;
+    transform:translateY(40px);
+    transition:all 1s ease;
+}
+
+section.show{
+    opacity:1;
+    transform:translateY(0);
+}
+
+h1,h2{
+    font-family:'Playfair Display',serif;
+}
+
+.hero{
+    height:100vh;
+    background:url('https://images.unsplash.com/photo-1519741497674-611481863552') center/cover no-repeat;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    color:white;
+    position:relative;
+}
+
+.hero::after{
+    content:'';
+    position:absolute;
+    width:100%;
+    height:100%;
+    background:rgba(0,0,0,0.4);
+    top:0;left:0;
+}
+
+.hero-content{
+    position:relative;
+    z-index:2;
+}
+
+.hero h1{
+    font-size:60px;
+    letter-spacing:3px;
+}
+
+.date{
+    margin-top:20px;
+    font-size:22px;
+}
+
+.countdown{
+    margin-top:20px;
+    font-size:20px;
+}
+
+.gold{
+    color:#c6a75e;
+}
+
+.card{
+    max-width:500px;
+    margin:30px auto;
+    padding:40px;
+    border:1px solid #eee;
+    border-radius:15px;
+    box-shadow:0 5px 30px rgba(0,0,0,0.05);
+}
+
+button{
+    padding:12px 25px;
+    border:none;
+    background:#c6a75e;
+    color:white;
+    border-radius:30px;
+    cursor:pointer;
+}
+
+input{
+    padding:12px;
+    margin:10px;
+    width:250px;
+    border:1px solid #ddd;
+    border-radius:8px;
+}
+
+footer{
+    background:#111;
+    color:white;
+    padding:40px;
+}
+
+/* Hoa rơi */
+.flower{
+    position:fixed;
+    top:-50px;
+    font-size:20px;
+    animation:fall linear infinite;
+    color:#c6a75e;
+}
+
+@keyframes fall{
+    to{
+        transform:translateY(110vh);
+    }
+}
+</style>
+</head>
+
+<body>
+
+<section class="hero show">
+<div class="hero-content">
+<h1>Tuấn Kiệt <span class="gold">&</span> Hồng Ngọc</h1>
+<p class="date">20 . 05 . 2026</p>
+<div class="countdown" id="countdown"></div>
+</div>
+</section>
+
+<section>
+<h2 class="gold">Câu chuyện của chúng tôi</h2>
+<p style="max-width:700px;margin:auto;line-height:1.8">
+Từ một lần gặp gỡ định mệnh, chúng tôi đã cùng nhau viết nên câu chuyện tình yêu của riêng mình...
+</p>
+</section>
+
+<section>
+<h2 class="gold">Lễ Thành Hôn</h2>
+<div class="card">
+<p>⏰ 10:00 - 20/05/2026</p>
+<p>📍 Trung tâm Hội nghị ABC</p>
+<a href="https://maps.google.com" target="_blank">
+<button>Xem bản đồ</button>
+</a>
+</div>
+</section>
+
+<section>
+<h2 class="gold">Xác nhận tham dự</h2>
+<p id="guestName"></p>
+<form>
+<input type="text" placeholder="Tên của bạn">
+<br>
+<button type="submit">Gửi xác nhận</button>
+</form>
+</section>
+
+<footer>
+Tuấn Kiệt ❤️ Hồng Ngọc | 2026
+</footer>
+
+<audio autoplay loop>
+<source src="https://www.bensound.com/bensound-music/bensound-romantic.mp3">
+</audio>
+
+<script>
+// Đếm ngược
+var weddingDate = new Date("May 20, 2026 00:00:00").getTime();
+setInterval(function(){
+var now = new Date().getTime();
+var distance = weddingDate - now;
+var days = Math.floor(distance/(1000*60*60*24));
+var hours = Math.floor((distance%(1000*60*60*24))/(1000*60*60));
+document.getElementById("countdown").innerHTML =
+"Còn " + days + " ngày " + hours + " giờ";
+},1000);
+
+// Hiệu ứng cuộn
+window.addEventListener("scroll",function(){
+document.querySelectorAll("section").forEach(function(sec){
+if(sec.getBoundingClientRect().top < window.innerHeight-100){
+sec.classList.add("show");
+}
+});
+});
+
+// Hoa rơi
+for(let i=0;i<25;i++){
+let flower=document.createElement("div");
+flower.classList.add("flower");
+flower.innerHTML="✿";
+flower.style.left=Math.random()*100+"vw";
+flower.style.animationDuration=(5+Math.random()*5)+"s";
+flower.style.fontSize=(15+Math.random()*20)+"px";
+document.body.appendChild(flower);
+}
+
+// Link riêng từng khách
+const params = new URLSearchParams(window.location.search);
+const name = params.get("guest");
+if(name){
+document.getElementById("guestName").innerHTML =
+"Thân gửi <strong>"+ name +"</strong> 💌";
+}
+</script>
+
+</body>
+</html>
