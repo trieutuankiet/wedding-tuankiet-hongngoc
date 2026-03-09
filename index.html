@@ -1,135 +1,219 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
-<html>
+<!DOCTYPE html>
+<html lang="vi">
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-  <meta http-equiv="Content-Style-Type" content="text/css">
-  <title></title>
-  <meta name="Generator" content="Cocoa HTML Writer">
-  <meta name="CocoaVersion" content="2575.5">
-  <style type="text/css">
-    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica}
-    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica; min-height: 14.0px}
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tuấn Kiệt & Hồng Ngọc</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@300;400&display=swap" rel="stylesheet">
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+
+body{
+    font-family:'Montserrat',sans-serif;
+    background:#ffffff;
+    color:#333;
+    scroll-behavior:smooth;
+    overflow-x:hidden;
+}
+
+section{
+    padding:100px 20px;
+    text-align:center;
+    opacity:0;
+    transform:translateY(40px);
+    transition:all 1s ease;
+}
+
+section.show{
+    opacity:1;
+    transform:translateY(0);
+}
+
+h1,h2{
+    font-family:'Playfair Display',serif;
+}
+
+.hero{
+    height:100vh;
+    background:url('https://images.unsplash.com/photo-1519741497674-611481863552') center/cover no-repeat;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    color:white;
+    position:relative;
+}
+
+.hero::after{
+    content:'';
+    position:absolute;
+    width:100%;
+    height:100%;
+    background:rgba(0,0,0,0.4);
+    top:0;left:0;
+}
+
+.hero-content{
+    position:relative;
+    z-index:2;
+}
+
+.hero h1{
+    font-size:60px;
+    letter-spacing:3px;
+}
+
+.date{
+    margin-top:20px;
+    font-size:22px;
+}
+
+.countdown{
+    margin-top:20px;
+    font-size:20px;
+}
+
+.gold{
+    color:#c6a75e;
+}
+
+.card{
+    max-width:500px;
+    margin:30px auto;
+    padding:40px;
+    border:1px solid #eee;
+    border-radius:15px;
+    box-shadow:0 5px 30px rgba(0,0,0,0.05);
+}
+
+button{
+    padding:12px 25px;
+    border:none;
+    background:#c6a75e;
+    color:white;
+    border-radius:30px;
+    cursor:pointer;
+}
+
+input{
+    padding:12px;
+    margin:10px;
+    width:250px;
+    border:1px solid #ddd;
+    border-radius:8px;
+}
+
+footer{
+    background:#111;
+    color:white;
+    padding:40px;
+}
+
+/* Hoa rơi */
+.flower{
+    position:fixed;
+    top:-50px;
+    font-size:20px;
+    animation:fall linear infinite;
+    color:#c6a75e;
+}
+
+@keyframes fall{
+    to{
+        transform:translateY(110vh);
+    }
+}
+</style>
 </head>
+
 <body>
-<p class="p1">&lt;!DOCTYPE html&gt;</p>
-<p class="p1">&lt;html lang="vi"&gt;</p>
-<p class="p1">&lt;head&gt;</p>
-<p class="p1">&lt;meta charset="UTF-8"&gt;</p>
-<p class="p1">&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;</p>
-<p class="p1">&lt;title&gt;Thiệp Cưới - Huy &amp; Mai&lt;/title&gt;</p>
-<p class="p1">&lt;link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500&amp;family=Montserrat:wght@300;400&amp;display=swap" rel="stylesheet"&gt;</p>
-<p class="p1">&lt;style&gt;</p>
-<p class="p1">body {</p>
-<p class="p1"><span class="Apple-converted-space">    </span>margin: 0;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>font-family: 'Montserrat', sans-serif;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>background: #fdfaf6;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>color: #333;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>text-align: center;</p>
-<p class="p1">}</p>
-<p class="p2"><br></p>
-<p class="p1">.hero {</p>
-<p class="p1"><span class="Apple-converted-space">    </span>height: 100vh;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>background: url('https://images.unsplash.com/photo-1522673607200-164d1b6ce486') center/cover no-repeat;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>display: flex;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>flex-direction: column;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>justify-content: center;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>color: white;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>background-blend-mode: overlay;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>background-color: rgba(0,0,0,0.4);</p>
-<p class="p1">}</p>
-<p class="p2"><br></p>
-<p class="p1">.hero h1 {</p>
-<p class="p1"><span class="Apple-converted-space">    </span>font-family: 'Playfair Display', serif;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>font-size: 50px;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>margin: 0;</p>
-<p class="p1">}</p>
-<p class="p2"><br></p>
-<p class="p1">.hero p {</p>
-<p class="p1"><span class="Apple-converted-space">    </span>font-size: 20px;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>letter-spacing: 2px;</p>
-<p class="p1">}</p>
-<p class="p2"><br></p>
-<p class="p1">.section {</p>
-<p class="p1"><span class="Apple-converted-space">    </span>padding: 80px 20px;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>max-width: 800px;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>margin: auto;</p>
-<p class="p1">}</p>
-<p class="p2"><br></p>
-<p class="p1">.section h2 {</p>
-<p class="p1"><span class="Apple-converted-space">    </span>font-family: 'Playfair Display', serif;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>font-size: 36px;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>margin-bottom: 30px;</p>
-<p class="p1">}</p>
-<p class="p2"><br></p>
-<p class="p1">.info-box {</p>
-<p class="p1"><span class="Apple-converted-space">    </span>background: white;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>padding: 30px;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>border-radius: 10px;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>box-shadow: 0 5px 20px rgba(0,0,0,0.1);</p>
-<p class="p1">}</p>
-<p class="p2"><br></p>
-<p class="p1">.btn {</p>
-<p class="p1"><span class="Apple-converted-space">    </span>display: inline-block;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>margin-top: 20px;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>padding: 12px 30px;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>background: #c9a227;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>color: white;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>text-decoration: none;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>border-radius: 30px;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>transition: 0.3s;</p>
-<p class="p1">}</p>
-<p class="p2"><br></p>
-<p class="p1">.btn:hover {</p>
-<p class="p1"><span class="Apple-converted-space">    </span>background: #a8861d;</p>
-<p class="p1">}</p>
-<p class="p2"><br></p>
-<p class="p1">footer {</p>
-<p class="p1"><span class="Apple-converted-space">    </span>padding: 30px;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>background: #111;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>color: white;</p>
-<p class="p1">}</p>
-<p class="p1">&lt;/style&gt;</p>
-<p class="p1">&lt;/head&gt;</p>
-<p class="p2"><br></p>
-<p class="p1">&lt;body&gt;</p>
-<p class="p2"><br></p>
-<p class="p1">&lt;section class="hero"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;h1&gt;Huy &amp; Mai&lt;/h1&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;p&gt;Chúng mình cưới nhau rồi 💍&lt;/p&gt;</p>
-<p class="p1">&lt;/section&gt;</p>
-<p class="p2"><br></p>
-<p class="p1">&lt;section class="section"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;h2&gt;Về Chúng Mình&lt;/h2&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="info-box"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;p&gt;Là một người hiền lành nhưng nói nhiều. Thích đi du lịch, thích kiếm tiền và tiêu tiền.&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;p&gt;Gia đình là trên hết ❤️&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;p&gt;Và đặc biệt là "Cực thích nhau" nữa :3&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
-<p class="p1">&lt;/section&gt;</p>
-<p class="p2"><br></p>
-<p class="p1">&lt;section class="section"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;h2&gt;Thông Tin Lễ Cưới&lt;/h2&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="info-box"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;p&gt;&lt;strong&gt;Thời gian:&lt;/strong&gt; 10h00 - 10/02/2026&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;p&gt;&lt;strong&gt;Địa điểm:&lt;/strong&gt; Trung Tâm Hội Nghị White Palace&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;a class="btn" href="https://maps.google.com" target="_blank"&gt;Xem Bản Đồ&lt;/a&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
-<p class="p1">&lt;/section&gt;</p>
-<p class="p2"><br></p>
-<p class="p1">&lt;section class="section"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;h2&gt;Lời Cảm Ơn&lt;/h2&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="info-box"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;p&gt;Thật vui vì được gặp và đón tiếp các bạn trong ngày đặc biệt này.&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;p&gt;Cảm ơn vì đã đến và gửi những lời chúc tốt đẹp cho chúng mình ❤️&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
-<p class="p1">&lt;/section&gt;</p>
-<p class="p2"><br></p>
-<p class="p1">&lt;footer&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>© 2026 Huy &amp; Mai Wedding</p>
-<p class="p1">&lt;/footer&gt;</p>
-<p class="p2"><br></p>
-<p class="p1">&lt;/body&gt;</p>
-<p class="p1">&lt;/html&gt;</p>
+
+<section class="hero show">
+<div class="hero-content">
+<h1>Tuấn Kiệt <span class="gold">&</span> Hồng Ngọc</h1>
+<p class="date">20 . 05 . 2026</p>
+<div class="countdown" id="countdown"></div>
+</div>
+</section>
+
+<section>
+<h2 class="gold">Câu chuyện của chúng tôi</h2>
+<p style="max-width:700px;margin:auto;line-height:1.8">
+Từ một lần gặp gỡ định mệnh, chúng tôi đã cùng nhau viết nên câu chuyện tình yêu của riêng mình...
+</p>
+</section>
+
+<section>
+<h2 class="gold">Lễ Thành Hôn</h2>
+<div class="card">
+<p>⏰ 10:00 - 20/05/2026</p>
+<p>📍 Trung tâm Hội nghị ABC</p>
+<a href="https://maps.google.com" target="_blank">
+<button>Xem bản đồ</button>
+</a>
+</div>
+</section>
+
+<section>
+<h2 class="gold">Xác nhận tham dự</h2>
+<p id="guestName"></p>
+<form>
+<input type="text" placeholder="Tên của bạn">
+<br>
+<button type="submit">Gửi xác nhận</button>
+</form>
+</section>
+
+<footer>
+Tuấn Kiệt ❤️ Hồng Ngọc | 2026
+</footer>
+
+<audio autoplay loop>
+<source src="https://www.bensound.com/bensound-music/bensound-romantic.mp3">
+</audio>
+
+<script>
+// Đếm ngược
+var weddingDate = new Date("May 20, 2026 00:00:00").getTime();
+setInterval(function(){
+var now = new Date().getTime();
+var distance = weddingDate - now;
+var days = Math.floor(distance/(1000*60*60*24));
+var hours = Math.floor((distance%(1000*60*60*24))/(1000*60*60));
+document.getElementById("countdown").innerHTML =
+"Còn " + days + " ngày " + hours + " giờ";
+},1000);
+
+// Hiệu ứng cuộn
+window.addEventListener("scroll",function(){
+document.querySelectorAll("section").forEach(function(sec){
+if(sec.getBoundingClientRect().top < window.innerHeight-100){
+sec.classList.add("show");
+}
+});
+});
+
+// Hoa rơi
+for(let i=0;i<25;i++){
+let flower=document.createElement("div");
+flower.classList.add("flower");
+flower.innerHTML="✿";
+flower.style.left=Math.random()*100+"vw";
+flower.style.animationDuration=(5+Math.random()*5)+"s";
+flower.style.fontSize=(15+Math.random()*20)+"px";
+document.body.appendChild(flower);
+}
+
+// Link riêng từng khách
+const params = new URLSearchParams(window.location.search);
+const name = params.get("guest");
+if(name){
+document.getElementById("guestName").innerHTML =
+"Thân gửi <strong>"+ name +"</strong> 💌";
+}
+</script>
+
 </body>
 </html>
