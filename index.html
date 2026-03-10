@@ -14,369 +14,362 @@
 
 <style>
 :root{
-  --main-red: #b30000;
-  --dark-red: #7a0000;
-  --gold: #ffd700;
+--main-red:#b30000;
+--dark-red:#7a0000;
+--gold:#ffd700;
 }
 
-* { margin:0; padding:0; box-sizing:border-box; }
+*{margin:0;padding:0;box-sizing:border-box}
 
-html, body {
-  width: 100%;
-  min-height: 100%;
+body{
+font-family:'Montserrat',sans-serif;
+color:white;
+overflow-x:hidden;
 }
 
-body {
-  font-family: 'Montserrat', sans-serif;
-  color: white;
-  overflow-x: hidden;
-  background: url('anh.JPG') no-repeat center center fixed;
-  background-size: cover;
+/* ===== BACKGROUND FIX 16:9 ===== */
+.background-container{
+position:fixed;
+top:0;left:0;
+width:100%;height:100%;
+z-index:-2;
+overflow:hidden;
 }
 
-/* Overlay đỏ toàn trang */
-body::before {
-  content: '';
-  position: fixed;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
-  background: rgba(122,0,0,0.2);
-  z-index: 0;
+.background-container img{
+width:100%;
+height:100%;
+object-fit:cover;
+object-position:center;
 }
 
-/* Tất cả nội dung phải nằm trên overlay */
-#envelope, section, #music-toggle, .flower {
-  position: relative;
-  z-index: 1;
+body::before{
+content:'';
+position:fixed;
+top:0;left:0;
+width:100%;height:100%;
+background:rgba(122,0,0,0.65);
+z-index:-1;
 }
 
 /* ===== PHONG BAO ===== */
-#envelope {
-  position: fixed;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
-  background: var(--dark-red);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  z-index: 9999;
-  cursor: pointer;
-  transition: opacity 1s;
+#envelope{
+position:fixed;
+top:0;left:0;
+width:100%;height:100%;
+background:var(--dark-red);
+display:flex;
+justify-content:center;
+align-items:center;
+flex-direction:column;
+z-index:9999;
+cursor:pointer;
+transition:opacity 1s;
 }
 
-#envelope.hide {
-  opacity: 0;
-  pointer-events: none;
+#envelope.hide{
+opacity:0;
+pointer-events:none;
 }
 
-.envelope-box {
-  width: min(280px, 80vw);
-  height: min(180px, 52vw);
-  background: white;
-  position: relative;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+.envelope-box{
+width:min(280px,80vw);
+height:min(180px,52vw);
+background:white;
+position:relative;
+box-shadow:0 10px 30px rgba(0,0,0,0.3);
 }
 
-.flap {
-  position: absolute;
-  top: 0; left: 0;
-  width: 100%;
-  height: 55%;
-  background: var(--main-red);
-  clip-path: polygon(0 0, 100% 0, 50% 100%);
-  transform-origin: top;
-  transition: transform 1s ease;
+.flap{
+position:absolute;
+top:0;left:0;
+width:100%;
+height:55%;
+background:var(--main-red);
+clip-path:polygon(0 0,100% 0,50% 100%);
+transform-origin:top;
+transition:transform 1s ease;
 }
 
-#envelope.open .flap {
-  transform: rotateX(180deg);
+#envelope.open .flap{
+transform:rotateX(180deg);
 }
 
-.open-text {
-  margin-top: 30px;
-  font-size: clamp(16px, 4vw, 22px);
-  letter-spacing: 2px;
-  text-align: center;
-  padding: 0 20px;
+.open-text{
+margin-top:30px;
+font-size:clamp(16px,4vw,22px);
+letter-spacing:2px;
+text-align:center;
 }
 
 /* ===== SECTION ===== */
-section {
-  padding: clamp(60px, 10vw, 120px) 20px;
-  text-align: center;
-  opacity: 0;
-  transform: translateY(40px);
-  transition: all 1s ease;
+section{
+padding:100px 20px;
+text-align:center;
+opacity:0;
+transform:translateY(40px);
+transition:all 1s ease;
 }
 
-section.show {
-  opacity: 1;
-  transform: translateY(0);
+section.show{
+opacity:1;
+transform:translateY(0);
 }
 
-/* ===== HERO ===== */
-.hero {
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
+/* HERO */
+.hero{
+min-height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+flex-direction:column;
 }
 
-/* TÊN VIẾT TAY */
-.hero h1 {
-  font-family: 'Dancing Script', cursive;
-  font-size: clamp(32px, 8vw, 72px);
-  color: var(--gold);
-  white-space: nowrap;
-  overflow: hidden;
-  border-right: 3px solid var(--gold);
-  width: 0;
-  margin: auto;
-  max-width: 95vw;
+.hero h1{
+font-family:'Dancing Script',cursive;
+font-size:clamp(32px,8vw,72px);
+color:var(--gold);
+white-space:nowrap;
+overflow:hidden;
+border-right:3px solid var(--gold);
+width:0;
 }
 
-.typing {
-  animation: typing 3s steps(30, end) forwards, blink .8s infinite;
+.typing{
+animation:typing 3s steps(30,end) forwards,blink .8s infinite;
 }
 
-@keyframes typing {
-  from { width: 0 }
-  to { width: 100% }
+@keyframes typing{
+from{width:0}
+to{width:100%}
 }
 
-@keyframes blink {
-  50% { border-color: transparent }
+@keyframes blink{
+50%{border-color:transparent}
 }
 
-.date {
-  margin-top: 20px;
-  font-size: clamp(18px, 4vw, 28px);
+.date{
+margin-top:20px;
+font-size:clamp(18px,4vw,28px);
 }
 
-/* ===== COUNTDOWN ===== */
-.countdown {
-  display: flex;
-  justify-content: center;
-  gap: clamp(8px, 2vw, 15px);
-  margin-top: 30px;
-  flex-wrap: wrap;
-  padding: 0 10px;
+/* COUNTDOWN */
+.countdown{
+display:flex;
+justify-content:center;
+gap:15px;
+margin-top:30px;
+flex-wrap:wrap;
 }
 
-.time-box {
-  background: rgba(255,255,255,0.15);
-  padding: clamp(10px, 2vw, 15px) clamp(12px, 2.5vw, 20px);
-  border-radius: 10px;
-  min-width: clamp(65px, 18vw, 90px);
+.time-box{
+background:rgba(255,255,255,0.15);
+padding:15px 20px;
+border-radius:10px;
+min-width:80px;
 }
 
-.number {
-  font-size: clamp(22px, 6vw, 36px);
-  font-weight: bold;
-  display: block;
+.number{
+font-size:28px;
+font-weight:bold;
 }
 
-.label {
-  font-size: clamp(10px, 2.5vw, 13px);
-  margin-top: 5px;
-  display: block;
+.label{
+font-size:13px;
+margin-top:5px;
 }
 
-/* ===== CARD ===== */
-.card {
-  max-width: 600px;
-  width: 100%;
-  margin: 30px auto;
-  padding: clamp(20px, 5vw, 40px);
-  background: rgba(0,0,0,0.4);
-  border-radius: 15px;
-  line-height: 2;
-  font-size: clamp(14px, 3.5vw, 17px);
+/* CARD */
+.card{
+max-width:600px;
+margin:30px auto;
+padding:30px;
+background:rgba(0,0,0,0.35);
+border-radius:15px;
+line-height:2;
 }
 
-h2 {
-  font-family: 'Playfair Display', serif;
-  font-size: clamp(22px, 5vw, 36px);
-  margin-bottom: 10px;
+/* FORM */
+form{
+max-width:500px;
+margin:20px auto;
+display:flex;
+flex-direction:column;
+gap:15px;
 }
 
-/* ===== QR ===== */
-.qr-section img {
-  width: min(250px, 70vw);
-  margin-top: 20px;
-  border-radius: 15px;
+input,textarea{
+padding:12px;
+border-radius:8px;
+border:none;
 }
 
-/* ===== HOA RƠI ===== */
-.flower {
-  position: fixed;
-  top: -50px;
-  font-size: 20px;
-  animation: fall linear infinite;
-  color: #ff4d4d;
-  pointer-events: none;
-  z-index: 2;
+button{
+padding:12px;
+border:none;
+background:var(--main-red);
+color:white;
+border-radius:8px;
+cursor:pointer;
+font-weight:bold;
 }
 
-@keyframes fall {
-  to { transform: translateY(110vh); }
+button:hover{
+background:#ff0000;
 }
 
-/* ===== ICON NHẠC ===== */
-#music-toggle {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  width: 48px;
-  height: 48px;
-  border-radius: 50%;
-  background: rgba(0,0,0,0.6);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 22px;
-  cursor: pointer;
-  z-index: 5000;
-  border: 1px solid rgba(255,255,255,0.3);
-  user-select: none;
+/* QR */
+.qr-section img{
+width:min(250px,70vw);
+margin-top:20px;
+border-radius:15px;
 }
 
-/* ===== MOBILE RIÊNG ===== */
-@media (max-width: 480px) {
-  .hero h1 {
-    font-size: clamp(28px, 9vw, 40px);
-  }
+/* HOA RƠI */
+.flower{
+position:fixed;
+top:-50px;
+font-size:20px;
+animation:fall linear infinite;
+color:#ff4d4d;
+pointer-events:none;
+z-index:1;
+}
 
-  .countdown {
-    gap: 8px;
-  }
+@keyframes fall{
+to{transform:translateY(110vh)}
+}
 
-  .time-box {
-    min-width: 60px;
-    padding: 10px;
-  }
-
-  .card {
-    margin: 20px 10px;
-    padding: 20px 15px;
-  }
+/* ICON NHẠC */
+#music-toggle{
+position:fixed;
+bottom:20px;
+right:20px;
+width:48px;
+height:48px;
+border-radius:50%;
+background:rgba(0,0,0,0.6);
+display:flex;
+justify-content:center;
+align-items:center;
+font-size:22px;
+cursor:pointer;
+z-index:5000;
 }
 </style>
 </head>
 
 <body>
 
-<!-- PHONG BAO -->
-<div id="envelope">
-  <div class="envelope-box">
-    <div class="flap"></div>
-  </div>
-  <div class="open-text">Bấm vào để mở thiệp 💌</div>
+<div class="background-container">
+<img src="anh.JPG" alt="background">
 </div>
 
-<!-- HERO -->
+<div id="envelope">
+<div class="envelope-box">
+<div class="flap"></div>
+</div>
+<div class="open-text">Bấm vào để mở thiệp 💌</div>
+</div>
+
 <section class="hero show">
-  <h1 id="names">Tuấn Kiệt ❤️ Hồng Ngọc</h1>
-  <p class="date">29 . 03 . 2026</p>
-  <div class="countdown">
-    <div class="time-box"><span id="days" class="number">0</span><span class="label">Ngày</span></div>
-    <div class="time-box"><span id="hours" class="number">0</span><span class="label">Giờ</span></div>
-    <div class="time-box"><span id="minutes" class="number">0</span><span class="label">Phút</span></div>
-    <div class="time-box"><span id="seconds" class="number">0</span><span class="label">Giây</span></div>
-  </div>
+<h1 id="names">Tuấn Kiệt ❤️ Hồng Ngọc</h1>
+<p class="date">29 . 03 . 2026</p>
+
+<div class="countdown">
+<div class="time-box"><div id="days" class="number">0</div><div class="label">Ngày</div></div>
+<div class="time-box"><div id="hours" class="number">0</div><div class="label">Giờ</div></div>
+<div class="time-box"><div id="minutes" class="number">0</div><div class="label">Phút</div></div>
+<div class="time-box"><div id="seconds" class="number">0</div><div class="label">Giây</div></div>
+</div>
 </section>
 
-<!-- THÔNG TIN -->
 <section>
-  <h2>Trân trọng kính mời</h2>
-  <div class="card">
-    <p>⏰ 16:30 – 18:00 | Chủ Nhật</p>
-    <p>📅 29/03/2026 (11/02 Âm lịch)</p>
-    <p>📍 Tại tư gia nhà gái</p>
-    <p>Thôn Hạ 1, xã Sơn Động, tỉnh Bắc Ninh</p>
-    <p>Sự hiện diện của bạn là niềm vinh dự của gia đình tôi</p>
-  </div>
+<h2>Thông tin hôn lễ</h2>
+<div class="card">
+<p>⏰ 16:30 - 18:00 | Chủ Nhật</p>
+<p>📅 29/03/2026 (11/02 Âm lịch)</p>
+<p>📍 Tại tư gia nhà gái</p>
+<p>Thôn Hạ 1, xã Sơn Động, tỉnh Bắc Ninh</p>
+</div>
 </section>
 
-<!-- QR -->
+<section>
+<h2>Xác nhận tham dự</h2>
+<form id="rsvp-form">
+<input type="text" placeholder="Tên của bạn" required>
+<input type="tel" placeholder="Số điện thoại">
+<button type="submit">Gửi xác nhận</button>
+</form>
+</section>
+
+<section>
+<h2>Gửi lưu bút</h2>
+<form id="guestbook-form">
+<input type="text" placeholder="Tên của bạn" required>
+<textarea rows="4" placeholder="Viết lời chúc cho cô dâu chú rể..." required></textarea>
+<button type="submit">Gửi lời chúc</button>
+</form>
+</section>
+
 <section class="qr-section">
-  <h2>Gửi lời chúc tại</h2>
-  <img src="qr.jpg" alt="QR chuyển khoản mừng cưới">
+<h2>Gửi lời chúc tại</h2>
+<img src="qr.jpg">
 </section>
 
-<!-- ICON NHẠC -->
 <div id="music-toggle">🔇</div>
 
-<!-- NHẠC -->
 <audio id="music" loop preload="auto">
-  <source src="./music.mp3" type="audio/mpeg">
+<source src="./music.mp3" type="audio/mpeg">
 </audio>
 
 <script>
-const envelope = document.getElementById("envelope");
-const music    = document.getElementById("music");
-const names    = document.getElementById("names");
-const toggle   = document.getElementById("music-toggle");
+const envelope=document.getElementById("envelope");
+const music=document.getElementById("music");
+const names=document.getElementById("names");
+const toggle=document.getElementById("music-toggle");
 
-let isPlaying = false;
+let isPlaying=false;
 
-/* Mở thiệp */
-envelope.addEventListener("click", function () {
-  envelope.classList.add("open");
-  setTimeout(() => { envelope.classList.add("hide"); }, 1000);
-
-  music.play().then(() => {
-    isPlaying = true;
-    toggle.innerHTML = "🔊";
-  }).catch(() => {});
-
-  names.classList.add("typing");
+envelope.addEventListener("click",()=>{
+envelope.classList.add("open");
+setTimeout(()=>{envelope.classList.add("hide")},1000);
+music.play().then(()=>{isPlaying=true;toggle.innerHTML="🔊"});
+names.classList.add("typing");
 });
 
-/* Bật / tắt nhạc */
-toggle.addEventListener("click", function () {
-  if (isPlaying) {
-    music.pause();
-    toggle.innerHTML = "🔇";
-    isPlaying = false;
-  } else {
-    music.play();
-    toggle.innerHTML = "🔊";
-    isPlaying = true;
-  }
+toggle.addEventListener("click",()=>{
+if(isPlaying){music.pause();toggle.innerHTML="🔇";isPlaying=false;}
+else{music.play();toggle.innerHTML="🔊";isPlaying=true;}
 });
 
-/* Countdown */
-var weddingDate = new Date("March 29, 2026 16:30:00").getTime();
-setInterval(function () {
-  var now      = new Date().getTime();
-  var distance = weddingDate - now;
-  document.getElementById("days").innerHTML    = Math.floor(distance / (1000*60*60*24));
-  document.getElementById("hours").innerHTML   = Math.floor((distance % (1000*60*60*24)) / (1000*60*60));
-  document.getElementById("minutes").innerHTML = Math.floor((distance % (1000*60*60)) / (1000*60));
-  document.getElementById("seconds").innerHTML = Math.floor((distance % (1000*60)) / 1000);
-}, 1000);
+var weddingDate=new Date("March 29, 2026 16:30:00").getTime();
 
-/* Hoa rơi */
-for (let i = 0; i < 25; i++) {
-  let flower = document.createElement("div");
-  flower.classList.add("flower");
-  flower.innerHTML = "❀";
-  flower.style.left              = Math.random() * 100 + "vw";
-  flower.style.animationDuration = (5 + Math.random() * 5) + "s";
-  flower.style.fontSize          = (15 + Math.random() * 20) + "px";
-  document.body.appendChild(flower);
+setInterval(()=>{
+var now=new Date().getTime();
+var distance=weddingDate-now;
+document.getElementById("days").innerHTML=Math.floor(distance/(1000*60*60*24));
+document.getElementById("hours").innerHTML=Math.floor((distance%(1000*60*60*24))/(1000*60*60));
+document.getElementById("minutes").innerHTML=Math.floor((distance%(1000*60*60))/(1000*60));
+document.getElementById("seconds").innerHTML=Math.floor((distance%(1000*60))/1000);
+},1000);
+
+for(let i=0;i<25;i++){
+let flower=document.createElement("div");
+flower.classList.add("flower");
+flower.innerHTML="❀";
+flower.style.left=Math.random()*100+"vw";
+flower.style.animationDuration=(5+Math.random()*5)+"s";
+flower.style.fontSize=(15+Math.random()*20)+"px";
+document.body.appendChild(flower);
 }
 
-/* Scroll effect */
-window.addEventListener("scroll", function () {
-  document.querySelectorAll("section").forEach(function (sec) {
-    if (sec.getBoundingClientRect().top < window.innerHeight - 100) {
-      sec.classList.add("show");
-    }
-  });
+window.addEventListener("scroll",()=>{
+document.querySelectorAll("section").forEach(sec=>{
+if(sec.getBoundingClientRect().top<window.innerHeight-100){
+sec.classList.add("show");
+}
+});
 });
 </script>
 
