@@ -27,7 +27,7 @@ color:white;
 overflow-x:hidden;
 }
 
-/* ===== BACKGROUND FIX 16:9 ===== */
+/* BACKGROUND */
 .background-container{
 position:fixed;
 top:0;left:0;
@@ -35,14 +35,12 @@ width:100%;height:100%;
 z-index:-2;
 overflow:hidden;
 }
-
 .background-container img{
 width:100%;
 height:100%;
 object-fit:cover;
 object-position:center;
 }
-
 body::before{
 content:'';
 position:fixed;
@@ -52,7 +50,7 @@ background:rgba(122,0,0,0.65);
 z-index:-1;
 }
 
-/* ===== PHONG BAO ===== */
+/* PHONG BAO */
 #envelope{
 position:fixed;
 top:0;left:0;
@@ -66,11 +64,7 @@ z-index:9999;
 cursor:pointer;
 transition:opacity 1s;
 }
-
-#envelope.hide{
-opacity:0;
-pointer-events:none;
-}
+#envelope.hide{opacity:0;pointer-events:none;}
 
 .envelope-box{
 width:min(280px,80vw);
@@ -90,19 +84,15 @@ clip-path:polygon(0 0,100% 0,50% 100%);
 transform-origin:top;
 transition:transform 1s ease;
 }
-
-#envelope.open .flap{
-transform:rotateX(180deg);
-}
+#envelope.open .flap{transform:rotateX(180deg);}
 
 .open-text{
 margin-top:30px;
 font-size:clamp(16px,4vw,22px);
 letter-spacing:2px;
-text-align:center;
 }
 
-/* ===== SECTION ===== */
+/* SECTION */
 section{
 padding:100px 20px;
 text-align:center;
@@ -110,11 +100,7 @@ opacity:0;
 transform:translateY(40px);
 transition:all 1s ease;
 }
-
-section.show{
-opacity:1;
-transform:translateY(0);
-}
+section.show{opacity:1;transform:translateY(0);}
 
 /* HERO */
 .hero{
@@ -134,23 +120,29 @@ overflow:hidden;
 border-right:3px solid var(--gold);
 width:0;
 }
-
 .typing{
 animation:typing 3s steps(30,end) forwards,blink .8s infinite;
 }
-
 @keyframes typing{
 from{width:0}
 to{width:100%}
 }
-
 @keyframes blink{
 50%{border-color:transparent}
 }
 
-.date{
+.subtitle{
 margin-top:20px;
+max-width:600px;
+font-size:clamp(16px,3.5vw,20px);
+line-height:1.8;
+opacity:0.95;
+}
+
+.date{
+margin-top:25px;
 font-size:clamp(18px,4vw,28px);
+font-weight:600;
 }
 
 /* COUNTDOWN */
@@ -158,22 +150,19 @@ font-size:clamp(18px,4vw,28px);
 display:flex;
 justify-content:center;
 gap:15px;
-margin-top:30px;
+margin-top:35px;
 flex-wrap:wrap;
 }
-
 .time-box{
 background:rgba(255,255,255,0.15);
 padding:15px 20px;
 border-radius:10px;
 min-width:80px;
 }
-
 .number{
-font-size:28px;
+font-size:26px;
 font-weight:bold;
 }
-
 .label{
 font-size:13px;
 margin-top:5px;
@@ -183,27 +172,26 @@ margin-top:5px;
 .card{
 max-width:600px;
 margin:30px auto;
-padding:30px;
+padding:35px;
 background:rgba(0,0,0,0.35);
 border-radius:15px;
 line-height:2;
+font-size:clamp(15px,3.5vw,18px);
 }
 
 /* FORM */
 form{
-max-width:500px;
-margin:20px auto;
+max-width:450px;
+margin:25px auto;
 display:flex;
 flex-direction:column;
 gap:15px;
 }
-
 input,textarea{
 padding:12px;
 border-radius:8px;
 border:none;
 }
-
 button{
 padding:12px;
 border:none;
@@ -213,40 +201,19 @@ border-radius:8px;
 cursor:pointer;
 font-weight:bold;
 }
+button:hover{background:#ff0000;}
 
-button:hover{
-background:#ff0000;
-}
-
-/* QR */
 .qr-section img{
 width:min(250px,70vw);
 margin-top:20px;
 border-radius:15px;
 }
 
-/* HOA RƠI */
-.flower{
-position:fixed;
-top:-50px;
-font-size:20px;
-animation:fall linear infinite;
-color:#ff4d4d;
-pointer-events:none;
-z-index:1;
-}
-
-@keyframes fall{
-to{transform:translateY(110vh)}
-}
-
-/* ICON NHẠC */
 #music-toggle{
 position:fixed;
 bottom:20px;
 right:20px;
-width:48px;
-height:48px;
+width:48px;height:48px;
 border-radius:50%;
 background:rgba(0,0,0,0.6);
 display:flex;
@@ -266,14 +233,19 @@ z-index:5000;
 </div>
 
 <div id="envelope">
-<div class="envelope-box">
-<div class="flap"></div>
-</div>
-<div class="open-text">Bấm vào để mở thiệp 💌</div>
+<div class="envelope-box"><div class="flap"></div></div>
+<div class="open-text">Chạm để mở thiệp 💌</div>
 </div>
 
 <section class="hero show">
 <h1 id="names">Tuấn Kiệt ❤️ Hồng Ngọc</h1>
+
+<p class="subtitle">
+Sau hành trình yêu thương và đồng hành cùng nhau,
+chúng tôi quyết định nắm tay bước sang một chặng đường mới của cuộc đời.
+Rất mong được đón tiếp bạn trong ngày trọng đại ấy.
+</p>
+
 <p class="date">29 . 03 . 2026</p>
 
 <div class="countdown">
@@ -285,30 +257,35 @@ z-index:5000;
 </section>
 
 <section>
-<h2>Thông tin hôn lễ</h2>
+<h2>Trân trọng kính mời</h2>
 <div class="card">
-<p>⏰ 16:30 - 18:00 | Chủ Nhật</p>
+<p>Đến chung vui cùng gia đình chúng tôi</p>
+<p>⏰ 16:30 – 18:00 | Chủ Nhật</p>
+<p>📍 Thôn Hạ 1, xã Sơn Động, tỉnh Bắc Ninh</p>
 <p>📅 29/03/2026 (11/02 Âm lịch)</p>
-<p>📍 Tại tư gia nhà gái</p>
-<p>Thôn Hạ 1, xã Sơn Động, tỉnh Bắc Ninh</p>
 </div>
 </section>
 
 <section>
-<h2>Xác nhận tham dự</h2>
-<form id="rsvp-form">
-<input type="text" placeholder="Tên của bạn" required>
-<input type="tel" placeholder="Số điện thoại">
-<button type="submit">Gửi xác nhận</button>
+<h2>Bạn sẽ đến chứ?</h2>
+<p style="opacity:0.9;margin-bottom:10px;">
+Sự hiện diện của bạn là niềm vinh hạnh lớn đối với chúng tôi.
+</p>
+<form>
+<input type="text" placeholder="Nhập tên của bạn..." required>
+<button type="submit">Xác nhận tham dự 💖</button>
 </form>
 </section>
 
 <section>
-<h2>Gửi lưu bút</h2>
-<form id="guestbook-form">
+<h2>Gửi đôi lời yêu thương</h2>
+<p style="opacity:0.9;margin-bottom:10px;">
+Hãy để lại một lời chúc cho chúng tôi nhé.
+</p>
+<form>
 <input type="text" placeholder="Tên của bạn" required>
-<textarea rows="4" placeholder="Viết lời chúc cho cô dâu chú rể..." required></textarea>
-<button type="submit">Gửi lời chúc</button>
+<textarea rows="4" placeholder="Viết lời chúc của bạn tại đây..." required></textarea>
+<button type="submit">Gửi lời chúc ✨</button>
 </form>
 </section>
 
@@ -328,7 +305,6 @@ const envelope=document.getElementById("envelope");
 const music=document.getElementById("music");
 const names=document.getElementById("names");
 const toggle=document.getElementById("music-toggle");
-
 let isPlaying=false;
 
 envelope.addEventListener("click",()=>{
@@ -344,7 +320,6 @@ else{music.play();toggle.innerHTML="🔊";isPlaying=true;}
 });
 
 var weddingDate=new Date("March 29, 2026 16:30:00").getTime();
-
 setInterval(()=>{
 var now=new Date().getTime();
 var distance=weddingDate-now;
@@ -353,24 +328,6 @@ document.getElementById("hours").innerHTML=Math.floor((distance%(1000*60*60*24))
 document.getElementById("minutes").innerHTML=Math.floor((distance%(1000*60*60))/(1000*60));
 document.getElementById("seconds").innerHTML=Math.floor((distance%(1000*60))/1000);
 },1000);
-
-for(let i=0;i<25;i++){
-let flower=document.createElement("div");
-flower.classList.add("flower");
-flower.innerHTML="❀";
-flower.style.left=Math.random()*100+"vw";
-flower.style.animationDuration=(5+Math.random()*5)+"s";
-flower.style.fontSize=(15+Math.random()*20)+"px";
-document.body.appendChild(flower);
-}
-
-window.addEventListener("scroll",()=>{
-document.querySelectorAll("section").forEach(sec=>{
-if(sec.getBoundingClientRect().top<window.innerHeight-100){
-sec.classList.add("show");
-}
-});
-});
 </script>
 
 </body>
