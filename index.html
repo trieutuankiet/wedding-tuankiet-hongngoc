@@ -3,27 +3,92 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Tuấn Kiệt & Hồng Ngọc</title>
+<title>Tuấn Kiệt & Hồng Ngọc - Thiệp cưới Premium</title>
 
 <!-- Logo chữ Hỷ màu đỏ -->
 <link rel="icon" href='data:image/svg+xml,
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
-<text y=".9em" font-size="90" fill="red">囍</text>
+<text y=".9em" font-size="90" fill="#B83B5E">囍</text>
 </svg>'>
 
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@300;400&display=swap" rel="stylesheet">
+<!-- Google Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Montserrat:wght@300;400&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+
 
 <style>
+:root {
+    --main-red: #B83B5E;
+    --dark-red: #8B0000;
+    --gold: #FFD700;
+}
+
 *{margin:0;padding:0;box-sizing:border-box}
 
 body{
     font-family:'Montserrat',sans-serif;
-    background:#8B0000;
+    background: var(--dark-red);
     color:white;
     scroll-behavior:smooth;
     overflow-x:hidden;
+    visibility: hidden; /* Ẩn nội dung ban đầu */
 }
 
+/* --- HIỆU ỨNG MỞ THIỆP --- */
+#envelope {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: var(--dark-red);
+    z-index: 10000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    cursor: pointer;
+    transition: opacity 1s 1s;
+}
+#envelope.opened {
+    opacity: 0;
+    pointer-events: none;
+}
+.envelope-wrapper {
+    position: relative;
+    width: 300px;
+    height: 190px;
+    background: white;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+}
+.flap {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100px;
+    background: var(--main-red);
+    transform-origin: top;
+    transition: transform 1s ease-in-out;
+    clip-path: polygon(0 0, 100% 0, 50% 100%);
+}
+#envelope.opened .flap {
+    transform: rotateX(180deg);
+}
+.open-text {
+    margin-top: 30px;
+    color: white;
+    font-size: 20px;
+    font-family: 'Playfair Display', serif;
+    letter-spacing: 2px;
+}
+.hinh-hy {
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -10%);
+    font-size: 40px;
+    color: var(--gold);
+}
+
+
+/* --- CÁC PHẦN CHÍNH --- */
 section{
     padding:100px 20px;
     text-align:center;
@@ -31,129 +96,122 @@ section{
     transform:translateY(40px);
     transition:all 1s ease;
 }
-
-section.show{
-    opacity:1;
-    transform:translateY(0);
-}
-
-h1,h2{
-    font-family:'Playfair Display',serif;
-}
+section.show{opacity:1;transform:translateY(0)}
+h1,h2{font-family:'Playfair Display',serif}
 
 /* HERO */
 .hero{
     min-height:100vh;
-    background:url('anh.JPG') center/cover no-repeat;
-    display:flex;
-    flex-direction:column;
-    justify-content:center;
-    align-items:center;
+    background:url('anh.jpg') center/cover no-repeat;
+    display:flex;flex-direction:column;justify-content:center;align-items:center;
     position:relative;
 }
-
 .hero::after{
-    content:'';
-    position:absolute;
-    width:100%;
-    height:100%;
-    background:rgba(139,0,0,0.65);
-    top:0;left:0;
+    content:'';position:absolute;width:100%;height:100%;
+    background:rgba(139,0,0,0.65);top:0;left:0;
+}
+.hero-content{position:relative;z-index:2}
+
+/* ANIMATION TÊN VIẾT TAY */
+.hero h1 {
+    font-family: 'Dancing Script', cursive;
+    font-size: 7vw;
+    font-weight: 700;
+    color: var(--gold);
+    overflow: hidden;
+    white-space: nowrap;
+    border-right: .15em solid var(--gold);
+    animation: typing 3s steps(30, end) forwards, blink-caret .75s step-end infinite;
+    width: 0;
+}
+@keyframes typing {
+    from { width: 0 }
+    to { width: 100% }
+}
+@keyframes blink-caret {
+    from, to { border-color: transparent }
+    50% { border-color: var(--gold); }
 }
 
-.hero-content{
-    position:relative;
-    z-index:2;
-}
+.date{margin-top:20px;font-size:28px;}
 
-.hero h1{
-    font-size:60px;
-    letter-spacing:3px;
+/* ĐỒNG HỒ ĐẾM NGƯỢC LUXURY */
+.countdown-container{
+    margin-top:40px;
+    display:flex;
+    justify-content:center;
+    gap:15px;
 }
-
-.date{
-    margin-top:20px;
-    font-size:28px;
+.time-box{
+    background: rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,255,255,0.3);
+    padding:15px;
+    border-radius:10px;
+    min-width:90px;
 }
-
-.countdown{
-    margin-top:20px;
-    font-size:22px;
-}
+.time-box span{display:block}
+.time-box .number{font-size:36px;font-weight:700}
+.time-box .label{font-size:14px;margin-top:5px;text-transform:uppercase}
 
 /* CARD */
 .card{
-    max-width:600px;
-    margin:30px auto;
-    padding:40px;
+    max-width:600px;margin:30px auto;padding:40px;
     border:1px solid rgba(255,255,255,0.3);
-    border-radius:15px;
-    background:rgba(255,255,255,0.08);
+    border-radius:15px;background:rgba(255,255,255,0.08);
 }
+.card p {line-height: 2;}
 
-/* BUTTON */
 button{
-    padding:12px 25px;
-    border:none;
-    background:#ff2e2e;
-    color:white;
-    border-radius:30px;
-    cursor:pointer;
+    padding:12px 25px;border:none;background:var(--main-red);
+    color:white;border-radius:30px;cursor:pointer;
+    transition: background 0.3s;
 }
+button:hover {background: #ff2e2e;}
 
-/* INPUT */
-input{
-    padding:12px;
-    margin:10px;
-    width:250px;
-    border:none;
-    border-radius:8px;
-}
+input{padding:12px;margin:10px;width:280px;border:none;border-radius:8px;}
 
-/* QR */
-.qr-section img{
-    width:250px;
-    margin-top:20px;
-    border-radius:15px;
-}
+.qr-section img{width:250px;margin-top:20px;border-radius:15px;}
+footer{background:#5a0000;padding:40px;}
 
-/* FOOTER */
-footer{
-    background:#5a0000;
-    padding:40px;
-}
-
-/* HOA RƠI ĐỎ */
 .flower{
-    position:fixed;
-    top:-50px;
-    font-size:20px;
-    animation:fall linear infinite;
-    color:#ff4d4d;
-    pointer-events:none;
+    position:fixed;top:-50px;font-size:20px;animation:fall linear infinite;
+    color:#ff4d4d;pointer-events:none;
 }
+@keyframes fall{ to{transform:translateY(110vh)} }
 
-@keyframes fall{
-    to{
-        transform:translateY(110vh);
-    }
-}
+#rsvp-message {margin-top: 15px; font-weight: bold;}
 </style>
 </head>
 
 <body>
 
+<!-- Phong bao mở thiệp -->
+<div id="envelope">
+    <div class="envelope-wrapper">
+        <div class="flap"></div>
+        <div class="hinh-hy">囍</div>
+    </div>
+    <div class="open-text">Bấm vào để mở thiệp</div>
+</div>
+
+
 <section class="hero show">
 <div class="hero-content">
-<h1>Tuấn Kiệt ❤️ Hồng Ngọc</h1>
+<h1 id="couple-names">Tuấn Kiệt ❤️ Hồng Ngọc</h1>
 <p class="date">29 . 03 . 2026</p>
-<div class="countdown" id="countdown"></div>
+<div class="countdown-container" id="countdown">
+    <div class="time-box"><span id="days" class="number">0</span><span class="label">Ngày</span></div>
+    <div class="time-box"><span id="hours" class="number">0</span><span class="label">Giờ</span></div>
+    <div class="time-box"><span id="minutes" class="number">0</span><span class="label">Phút</span></div>
+    <div class="time-box"><span id="seconds" class="number">0</span><span class="label">Giây</span></div>
+</div>
 </div>
 </section>
 
 <section>
-<h2>Lễ Thành Hôn</h2>
+<h2>Trân trọng kính mời</h2>
 <div class="card">
+<p>tới dự hôn lễ của chúng tôi</p>
 <p>⏰ 16:30 - 18:00 | Chủ Nhật</p>
 <p>📅 29/03/2026 (11/02 Âm lịch)</p>
 <p>📍 Tại tư gia nhà gái</p>
@@ -167,11 +225,12 @@ footer{
 <section>
 <h2>Xác nhận tham dự</h2>
 <p id="guestName"></p>
-<form>
-<input type="text" placeholder="Tên của bạn">
+<form id="rsvp-form">
+<input type="text" id="name" name="name" placeholder="Tên của bạn" required>
 <br>
 <button type="submit">Gửi xác nhận</button>
 </form>
+<p id="rsvp-message"></p>
 </section>
 
 <section class="qr-section">
@@ -183,50 +242,88 @@ footer{
 Tuấn Kiệt ❤️ Hồng Ngọc | 2026
 </footer>
 
-<!-- NHẠC -->
-<audio autoplay loop>
+<audio id="background-music" loop>
 <source src="music.mp3" type="audio/mpeg">
 </audio>
 
 <script>
-// Đếm ngược
-var weddingDate = new Date("March 29, 2026 00:00:00").getTime();
-setInterval(function(){
-var now = new Date().getTime();
-var distance = weddingDate - now;
-var days = Math.floor(distance/(1000*60*60*24));
-var hours = Math.floor((distance%(1000*60*60*24))/(1000*60*60));
-document.getElementById("countdown").innerHTML =
-"Còn " + days + " ngày " + hours + " giờ";
-},1000);
+// --- SCRIPT CHÍNH ---
 
-// Scroll effect
-window.addEventListener("scroll",function(){
-document.querySelectorAll("section").forEach(function(sec){
-if(sec.getBoundingClientRect().top < window.innerHeight-100){
-sec.classList.add("show");
-}
-});
+// 1. Mở thiệp
+const envelope = document.getElementById('envelope');
+const audio = document.getElementById('background-music');
+envelope.addEventListener('click', () => {
+    envelope.classList.add('opened');
+    document.body.style.visibility = 'visible';
+    audio.play();
+
+    // Khởi chạy animation tên sau khi thiệp mở
+    const coupleNames = document.getElementById('couple-names');
+    coupleNames.style.animation = 'typing 3s steps(30, end) forwards, blink-caret .75s step-end infinite';
 });
 
-// Hoa rơi đỏ
-for(let i=0;i<30;i++){
-let flower=document.createElement("div");
-flower.classList.add("flower");
-flower.innerHTML="❀";
-flower.style.left=Math.random()*100+"vw";
-flower.style.animationDuration=(5+Math.random()*5)+"s";
-flower.style.fontSize=(15+Math.random()*25)+"px";
-document.body.appendChild(flower);
+
+// 2. Đếm ngược Luxury
+const weddingDate = new Date("March 29, 2026 16:30:00").getTime();
+setInterval(() => {
+    const now = new Date().getTime();
+    const distance = weddingDate - now;
+    document.getElementById("days").innerText = Math.floor(distance / (1000*60*60*24));
+    document.getElementById("hours").innerText = Math.floor((distance % (1000*60*60*24)) / (1000*60*60));
+    document.getElementById("minutes").innerText = Math.floor((distance % (1000*60*60)) / (1000*60));
+    document.getElementById("seconds").innerText = Math.floor((distance % (1000*60)) / 1000);
+}, 1000);
+
+// 3. Hiệu ứng cuộn
+window.addEventListener("scroll", () => {
+    document.querySelectorAll("section").forEach((sec) => {
+        if(sec.getBoundingClientRect().top < window.innerHeight - 100) {
+            sec.classList.add("show");
+        }
+    });
+});
+
+// 4. Hoa rơi
+for(let i=0; i<30; i++){
+    let flower = document.createElement("div");
+    flower.classList.add("flower");
+    flower.innerHTML = "❀"; // Bạn có thể đổi thành ✿ hoặc ♥
+    flower.style.left = Math.random() * 100 + "vw";
+    flower.style.animationDuration = (5 + Math.random() * 5) + "s";
+    flower.style.fontSize = (15 + Math.random() * 25) + "px";
+    document.body.appendChild(flower);
 }
 
-// Cá nhân hóa link
+// 5. Cá nhân hóa link mời
 const params = new URLSearchParams(window.location.search);
-const name = params.get("guest");
-if(name){
-document.getElementById("guestName").innerHTML =
-"Thân gửi <strong>"+ name +"</strong> 💌";
+const guestName = params.get("guest");
+if(guestName) {
+    document.getElementById("guestName").innerHTML = `Thân gửi <strong>${guestName}</strong> 💌`;
+    document.getElementById("name").value = guestName; // Tự điền tên vào form
 }
+
+// 6. Gửi xác nhận RSVP về Google Sheet
+const form = document.getElementById('rsvp-form');
+const rsvpMessage = document.getElementById('rsvp-message');
+form.addEventListener('submit', e => {
+    e.preventDefault();
+    rsvpMessage.textContent = 'Đang gửi xác nhận...';
+    fetch(form.action, { method: 'POST', body: new FormData(form)})
+    .then(response => {
+        rsvpMessage.textContent = '✅ Cảm ơn bạn đã xác nhận!';
+        form.reset();
+        setTimeout(() => { rsvpMessage.textContent = ''; }, 5000);
+    })
+    .catch(error => {
+        rsvpMessage.textContent = '❌ Có lỗi xảy ra, vui lòng thử lại.';
+        console.error('Error!', error.message);
+    });
+});
+
+// THAY THẾ LINK WEB APP CỦA BẠN VÀO ĐÂY
+const scriptURL = 'BẠN_SẼ_DÁN_URL_GOOGLE_APPS_SCRIPT_VÀO_ĐÂY';
+form.action = scriptURL;
+
 </script>
 
 </body>
