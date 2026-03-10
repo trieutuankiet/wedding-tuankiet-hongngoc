@@ -5,8 +5,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Tuấn Kiệt & Hồng Ngọc</title>
 
-<!-- ICON CHỮ HỶ (囍) TRÊN TAB -->
-<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>囍</text></svg>">
+<!-- Logo chữ Hỷ màu đỏ -->
+<link rel="icon" href='data:image/svg+xml,
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+<text y=".9em" font-size="90" fill="red">囍</text>
+</svg>'>
 
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@300;400&display=swap" rel="stylesheet">
 
@@ -15,8 +18,8 @@
 
 body{
     font-family:'Montserrat',sans-serif;
-    background:#ffffff;
-    color:#333;
+    background:#8B0000;
+    color:white;
     scroll-behavior:smooth;
     overflow-x:hidden;
 }
@@ -38,14 +41,14 @@ h1,h2{
     font-family:'Playfair Display',serif;
 }
 
+/* HERO */
 .hero{
-    height:100vh;
-    background:url('https://images.unsplash.com/photo-1519741497674-611481863552') center/cover no-repeat;
+    min-height:100vh;
+    background:url('anh.jpg') center/cover no-repeat;
     display:flex;
     flex-direction:column;
     justify-content:center;
     align-items:center;
-    color:white;
     position:relative;
 }
 
@@ -54,7 +57,7 @@ h1,h2{
     position:absolute;
     width:100%;
     height:100%;
-    background:rgba(0,0,0,0.4);
+    background:rgba(139,0,0,0.65);
     top:0;left:0;
 }
 
@@ -70,80 +73,64 @@ h1,h2{
 
 .date{
     margin-top:20px;
-    font-size:22px;
+    font-size:28px;
 }
 
 .countdown{
     margin-top:20px;
-    font-size:20px;
+    font-size:22px;
 }
 
-.gold{
-    color:#c6a75e;
-}
-
+/* CARD */
 .card{
-    max-width:500px;
+    max-width:600px;
     margin:30px auto;
     padding:40px;
-    border:1px solid #eee;
+    border:1px solid rgba(255,255,255,0.3);
     border-radius:15px;
-    box-shadow:0 5px 30px rgba(0,0,0,0.05);
+    background:rgba(255,255,255,0.08);
 }
 
-.gallery-grid {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 20px;
-    margin-top: 30px;
-}
-
-.gallery-grid img {
-    width: 100%;
-    max-width: 350px;
-    height: auto;
-    border-radius: 15px;
-    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
-    transition: transform 0.3s ease;
-}
-
-.gallery-grid img:hover {
-    transform: scale(1.05);
-}
-
+/* BUTTON */
 button{
     padding:12px 25px;
     border:none;
-    background:#c6a75e;
+    background:#ff2e2e;
     color:white;
     border-radius:30px;
     cursor:pointer;
 }
 
+/* INPUT */
 input{
     padding:12px;
     margin:10px;
     width:250px;
-    border:1px solid #ddd;
+    border:none;
     border-radius:8px;
 }
 
-footer{
-    background:#111;
-    color:white;
-    padding:40px;
-    text-align: center;
+/* QR */
+.qr-section img{
+    width:250px;
+    margin-top:20px;
+    border-radius:15px;
 }
 
-/* Hoa rơi */
+/* FOOTER */
+footer{
+    background:#5a0000;
+    padding:40px;
+}
+
+/* HOA RƠI ĐỎ */
 .flower{
     position:fixed;
     top:-50px;
     font-size:20px;
     animation:fall linear infinite;
-    color:#c6a75e;
-    pointer-events: none; /* Để không click vào hoa được */
+    color:#ff4d4d;
+    pointer-events:none;
 }
 
 @keyframes fall{
@@ -158,35 +145,19 @@ footer{
 
 <section class="hero show">
 <div class="hero-content">
-<h1>Tuấn Kiệt <span class="gold">&</span> Hồng Ngọc</h1>
-<p class="date">20 . 05 . 2026</p>
+<h1>Tuấn Kiệt ❤️ Hồng Ngọc</h1>
+<p class="date">29 . 03 . 2026</p>
 <div class="countdown" id="countdown"></div>
 </div>
 </section>
 
 <section>
-<h2 class="gold">Câu chuyện của chúng tôi</h2>
-<p style="max-width:700px;margin:auto;line-height:1.8">
-Từ một lần gặp gỡ định mệnh, chúng tôi đã cùng nhau viết nên câu chuyện tình yêu của riêng mình và quyết định về chung một nhà. Trân trọng kính mời bạn đến chung vui cùng chúng tôi.
-</p>
-</section>
-
-<!-- ALBUM ẢNH -->
-<section>
-    <h2 class="gold">Khoảnh khắc đáng nhớ</h2>
-    <div class="gallery-grid">
-        <!-- Thay ảnh của bạn vào đây, nên upload ảnh lên folder images cho gọn -->
-        <img src="https://images.unsplash.com/photo-1520854221256-17451cc331bf" alt="Ảnh cưới 1">
-        <img src="https://images.unsplash.com/photo-1504208434309-cb69f4fe52b0" alt="Ảnh cưới 2">
-        <img src="https://images.unsplash.com/photo-1529634899321-5c8b9f1f6c0c" alt="Ảnh cưới 3">
-    </div>
-</section>
-
-<section>
-<h2 class="gold">Lễ Thành Hôn</h2>
+<h2>Lễ Thành Hôn</h2>
 <div class="card">
-<p>⏰ 10:00 - 20/05/2026</p>
-<p>📍 Trung tâm Hội nghị ABC</p>
+<p>⏰ 16:30 - 18:00 | Chủ Nhật</p>
+<p>📅 29/03/2026 (11/02 Âm lịch)</p>
+<p>📍 Tại tư gia nhà gái</p>
+<p>Thôn Hạ 1, xã Sơn Động, tỉnh Bắc Ninh</p>
 <a href="https://maps.google.com" target="_blank">
 <button style="margin-top:20px;">Xem bản đồ</button>
 </a>
@@ -194,7 +165,7 @@ Từ một lần gặp gỡ định mệnh, chúng tôi đã cùng nhau viết n
 </section>
 
 <section>
-<h2 class="gold">Xác nhận tham dự</h2>
+<h2>Xác nhận tham dự</h2>
 <p id="guestName"></p>
 <form>
 <input type="text" placeholder="Tên của bạn">
@@ -203,18 +174,23 @@ Từ một lần gặp gỡ định mệnh, chúng tôi đã cùng nhau viết n
 </form>
 </section>
 
+<section class="qr-section">
+<h2>Gửi lời chúc tại</h2>
+<img src="qr.jpg" alt="QR chuyển khoản">
+</section>
+
 <footer>
 Tuấn Kiệt ❤️ Hồng Ngọc | 2026
 </footer>
 
-<!-- LINK NHẠC NỀN MỚI -->
+<!-- NHẠC -->
 <audio autoplay loop>
-<source src="https://cdn.pixabay.com/audio/2022/11/23/audio_8523b6c3d5.mp3">
+<source src="music.mp3" type="audio/mpeg">
 </audio>
 
 <script>
 // Đếm ngược
-var weddingDate = new Date("May 20, 2026 00:00:00").getTime();
+var weddingDate = new Date("March 29, 2026 00:00:00").getTime();
 setInterval(function(){
 var now = new Date().getTime();
 var distance = weddingDate - now;
@@ -224,7 +200,7 @@ document.getElementById("countdown").innerHTML =
 "Còn " + days + " ngày " + hours + " giờ";
 },1000);
 
-// Hiệu ứng cuộn
+// Scroll effect
 window.addEventListener("scroll",function(){
 document.querySelectorAll("section").forEach(function(sec){
 if(sec.getBoundingClientRect().top < window.innerHeight-100){
@@ -233,18 +209,18 @@ sec.classList.add("show");
 });
 });
 
-// Hoa rơi
-for(let i=0;i<25;i++){
+// Hoa rơi đỏ
+for(let i=0;i<30;i++){
 let flower=document.createElement("div");
 flower.classList.add("flower");
-flower.innerHTML="✿";
+flower.innerHTML="❀";
 flower.style.left=Math.random()*100+"vw";
 flower.style.animationDuration=(5+Math.random()*5)+"s";
-flower.style.fontSize=(15+Math.random()*20)+"px";
+flower.style.fontSize=(15+Math.random()*25)+"px";
 document.body.appendChild(flower);
 }
 
-// Link riêng từng khách
+// Cá nhân hóa link
 const params = new URLSearchParams(window.location.search);
 const name = params.get("guest");
 if(name){
