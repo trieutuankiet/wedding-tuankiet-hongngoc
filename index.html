@@ -9,9 +9,9 @@
 
 <style>
 :root{
-  --main-red:#b30000;
-  --dark-red:#7a0000;
-  --gold:#ffd700;
+  --main-red: #b30000;
+  --dark-red: #7a0000;
+  --gold: #ffd700;
 }
 
 *{
@@ -26,7 +26,7 @@ html,body{
   font-family:'Montserrat',sans-serif;
   color:white;
   overflow-x:hidden;
-  background:#7a0000;
+  background:var(--dark-red);
 }
 
 /* ===== BACKGROUND KHÔNG BỊ CẮT ===== */
@@ -34,21 +34,17 @@ html,body{
   position:fixed;
   inset:0;
   z-index:-2;
-  background:#7a0000;
   display:flex;
   justify-content:center;
   align-items:center;
 }
-
 .bg-wrapper img{
   max-width:100%;
   max-height:100%;
   width:auto;
   height:auto;
-  object-fit:contain; /* Không crop ảnh */
+  object-fit:contain;
 }
-
-/* overlay đỏ nhẹ */
 .bg-overlay{
   position:fixed;
   inset:0;
@@ -56,12 +52,62 @@ html,body{
   z-index:-1;
 }
 
-/* ===== SECTION ===== */
+/* ===== PHONG BAO MỞ THIỆP ===== */
+#envelope{
+  position:fixed;
+  inset:0;
+  background:var(--dark-red);
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  flex-direction:column;
+  z-index:9999;
+  cursor:pointer;
+  transition:opacity 1s 0.5s;
+}
+#envelope.hide{
+  opacity:0;
+  pointer-events:none;
+}
+.envelope-box{
+  width:min(280px,80vw);
+  height:min(180px,52vw);
+  background:white;
+  position:relative;
+  box-shadow:0 10px 30px rgba(0,0,0,0.3);
+}
+.flap{
+  position:absolute;
+  top:0;left:0;
+  width:100%;
+  height:55%;
+  background:var(--main-red);
+  clip-path:polygon(0 0,100% 0,50% 100%);
+  transform-origin:top;
+  transition:transform 1s ease;
+}
+#envelope.open .flap{
+  transform:rotateX(180deg);
+}
+.open-text{
+  margin-top:30px;
+  font-size:clamp(16px,4vw,22px);
+  letter-spacing:2px;
+}
+
+
+/* ===== SECTION & ANIMATION ===== */
 section{
   padding:100px 20px;
   text-align:center;
+  opacity:0;
+  transform:translateY(40px);
+  transition:opacity 1s, transform 1s;
 }
-
+section.show{
+  opacity:1;
+  transform:translateY(0);
+}
 .hero{
   min-height:100vh;
   display:flex;
@@ -70,17 +116,31 @@ section{
   flex-direction:column;
 }
 
+/* TÊN VIẾT TAY */
 .hero h1{
   font-family:'Dancing Script',cursive;
   font-size:clamp(32px,8vw,72px);
   color:var(--gold);
-  margin-bottom:20px;
+  white-space:nowrap;
+  overflow:hidden;
+  border-right:3px solid var(--gold);
+  width:0;
+}
+.typing{
+  animation:typing 3s steps(30,end) forwards, blink .8s infinite;
+}
+@keyframes typing{
+  from{width:0} to{width:100%}
+}
+@keyframes blink{
+  50%{border-color:transparent}
 }
 
 .subtitle{
-  max-width:600px;
+  max-width:650px;
   line-height:1.8;
   font-size:clamp(15px,3.5vw,20px);
+  margin-top:20px;
   margin-bottom:25px;
 }
 
@@ -97,25 +157,22 @@ section{
   gap:15px;
   flex-wrap:wrap;
 }
-
 .time-box{
   background:rgba(255,255,255,0.15);
   padding:15px 20px;
   border-radius:10px;
   min-width:80px;
 }
-
 .number{
   font-size:26px;
   font-weight:bold;
 }
-
 .label{
   font-size:13px;
   margin-top:5px;
 }
 
-/* CARD */
+/* CARD, FORM, QR */
 .card{
   max-width:600px;
   margin:30px auto;
@@ -124,8 +181,6 @@ section{
   border-radius:15px;
   line-height:2;
 }
-
-/* FORM */
 form{
   max-width:450px;
   margin:25px auto;
@@ -133,13 +188,11 @@ form{
   flex-direction:column;
   gap:15px;
 }
-
 input,textarea{
   padding:12px;
   border-radius:8px;
   border:none;
 }
-
 button{
   padding:12px;
   border:none;
@@ -148,42 +201,49 @@ button{
   border-radius:8px;
   cursor:pointer;
   font-weight:bold;
+  transition:0.3s;
 }
-
-button:hover{
-  background:#ff0000;
-}
-
-/* QR */
+button:hover{ background:#ff0000; }
 .qr-section img{
   width:min(250px,70vw);
   margin-top:20px;
   border-radius:15px;
 }
 
-/* ===== HOA RƠI ===== */
+/* HOA RƠI */
 .flower {
-  position: fixed;
-  top: -50px;
-  font-size: 18px;
-  color: #ff4d4d;
-  pointer-events: none;
-  animation: fall linear infinite;
-  z-index: 1;
-  opacity: 0.9;
+  position:fixed;
+  top:-50px;
+  font-size:18px;
+  color:#ff4d4d;
+  pointer-events:none;
+  animation:fall linear infinite;
+  z-index:9000;
+  opacity:0.9;
 }
-
 @keyframes fall {
-  to {
-    transform: translateY(110vh);
-  }
+  to { transform:translateY(110vh); }
 }
 
-/* MOBILE */
+/* ICON NHẠC */
+#music-toggle{
+  position:fixed;
+  bottom:20px;
+  right:20px;
+  width:48px;
+  height:48px;
+  border-radius:50%;
+  background:rgba(0,0,0,0.6);
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  font-size:22px;
+  cursor:pointer;
+  z-index:5000;
+}
+
 @media(max-width:768px){
-  section{
-    padding:70px 15px;
-  }
+  section{ padding:70px 15px; }
 }
 </style>
 </head>
@@ -196,13 +256,22 @@ button:hover{
 </div>
 <div class="bg-overlay"></div>
 
+<!-- PHONG BAO -->
+<div id="envelope">
+  <div class="envelope-box">
+    <div class="flap"></div>
+  </div>
+  <div class="open-text">Chạm để mở thiệp 💌</div>
+</div>
+
+
 <!-- HERO -->
 <section class="hero">
-  <h1>Tuấn Kiệt ❤️ Hồng Ngọc</h1>
+  <h1 id="names">Tuấn Kiệt ❤️ Hồng Ngọc</h1>
 
   <p class="subtitle">
     Sau hành trình yêu thương và đồng hành cùng nhau,
-    chúng tôi quyết định nắm tay bước sang một chặng đường mới.
+    chúng tôi quyết định nắm tay bước sang một chặng đường mới của cuộc đời.
     Rất mong được đón tiếp bạn trong ngày trọng đại ấy.
   </p>
 
@@ -216,6 +285,7 @@ button:hover{
   </div>
 </section>
 
+<!-- THÔNG TIN -->
 <section>
   <h2>Trân trọng kính mời</h2>
   <div class="card">
@@ -225,6 +295,7 @@ button:hover{
   </div>
 </section>
 
+<!-- RSVP -->
 <section>
   <h2>Bạn sẽ đến chứ?</h2>
   <form>
@@ -233,6 +304,7 @@ button:hover{
   </form>
 </section>
 
+<!-- LƯU BÚT -->
 <section>
   <h2>Gửi đôi lời yêu thương</h2>
   <form>
@@ -242,33 +314,85 @@ button:hover{
   </form>
 </section>
 
+<!-- QR -->
 <section class="qr-section">
   <h2>Gửi lời chúc tại</h2>
   <img src="qr.jpg" alt="QR">
 </section>
 
-<script>
-/* COUNTDOWN */
-var weddingDate=new Date("March 29, 2026 16:30:00").getTime();
-setInterval(function(){
-var now=new Date().getTime();
-var distance=weddingDate-now;
-document.getElementById("days").innerHTML=Math.floor(distance/(1000*60*60*24));
-document.getElementById("hours").innerHTML=Math.floor((distance%(1000*60*60*24))/(1000*60*60));
-document.getElementById("minutes").innerHTML=Math.floor((distance%(1000*60*60))/(1000*60));
-document.getElementById("seconds").innerHTML=Math.floor((distance%(1000*60))/1000);
-},1000);
+<!-- NHẠC -->
+<div id="music-toggle">🔇</div>
+<audio id="music" loop preload="auto">
+  <source src="./music.mp3" type="audio/mpeg">
+</audio>
 
-/* HOA RƠI */
-const icons=["❀","✿","❤"];
-for(let i=0;i<30;i++){
-  let flower=document.createElement("div");
+<script>
+// ===== CÁC THÀNH PHẦN =====
+const envelope = document.getElementById("envelope");
+const music = document.getElementById("music");
+const names = document.getElementById("names");
+const toggle = document.getElementById("music-toggle");
+let isPlaying = false;
+
+// ===== MỞ THIỆP =====
+envelope.addEventListener("click", () => {
+  envelope.classList.add("open");
+  setTimeout(() => { envelope.classList.add("hide"); }, 1500);
+
+  music.play().then(() => {
+    isPlaying = true;
+    toggle.innerHTML = "🔊";
+  }).catch(() => {});
+
+  names.classList.add("typing");
+
+  // Hiển thị section đầu tiên
+  document.querySelector('.hero').classList.add('show');
+});
+
+// ===== BẬT/TẮT NHẠC =====
+toggle.addEventListener("click", () => {
+  if (isPlaying) {
+    music.pause();
+    toggle.innerHTML = "🔇";
+    isPlaying = false;
+  } else {
+    music.play();
+    toggle.innerHTML = "🔊";
+    isPlaying = true;
+  }
+});
+
+// ===== HIỆU ỨNG SCROLL =====
+window.addEventListener("scroll", () => {
+  document.querySelectorAll("section").forEach(sec => {
+    if (sec.getBoundingClientRect().top < window.innerHeight - 100) {
+      sec.classList.add("show");
+    }
+  });
+});
+
+// ===== COUNTDOWN =====
+const weddingDate = new Date("March 29, 2026 16:30:00").getTime();
+setInterval(() => {
+  const now = new Date().getTime();
+  const distance = weddingDate - now;
+  document.getElementById("days").innerHTML = Math.floor(distance / (1000*60*60*24));
+  document.getElementById("hours").innerHTML = Math.floor((distance % (1000*60*60*24)) / (1000*60*60));
+  document.getElementById("minutes").innerHTML = Math.floor((distance % (1000*60*60)) / (1000*60));
+  document.getElementById("seconds").innerHTML = Math.floor((distance % (1000*60)) / 1000);
+}, 1000);
+
+// ===== HOA RƠI =====
+const icons = ["❀","✿","❤"];
+for(let i = 0; i < 30; i++){
+  let flower = document.createElement("div");
   flower.classList.add("flower");
-  flower.innerHTML=icons[Math.floor(Math.random()*icons.length)];
-  flower.style.left=Math.random()*100+"vw";
-  flower.style.animationDuration=(6+Math.random()*6)+"s";
-  flower.style.fontSize=(14+Math.random()*18)+"px";
-  flower.style.opacity=Math.random();
+  flower.innerHTML = icons[Math.floor(Math.random() * icons.length)];
+  flower.style.left = Math.random() * 100 + "vw";
+  flower.style.animationDuration = (6 + Math.random() * 6) + "s";
+  flower.style.fontSize = (14 + Math.random() * 18) + "px";
+  flower.style.opacity = Math.random();
   document.body.appendChild(flower);
 }
 </script>
