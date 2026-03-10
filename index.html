@@ -512,56 +512,75 @@ showOnScroll(); // Hiển thị các section đầu tiên khi tải trang
 /* === XỬ LÝ FORM GỬI ĐẾN GOOGLE SHEETS === */
 
 // THAY THẾ URL NÀY BẰNG URL WEB APP GOOGLE APPS SCRIPT CỦA BẠN
-const RSVP_URL = 'https://script.google.com/macros/s/AKfycbyosy7BgGYkyzh7Wtx6VzaSI0ECK3l-ZRdHY5u5nAkeloHIS6nkXSpq4QV6385v1-pB/exec';
-const GUESTBOOK_URL = 'https://script.google.com/macros/s/AKfycbyosy7BgGYkyzh7Wtx6VzaSI0ECK3l-ZRdHY5u5nAkeloHIS6nkXSpq4QV6385v1-pB/exec';
+const RSVP_URL = 'https://script.google.com/macros/s/AKfycbxAFRS0gVTbFclKPB9ouqrfyiQOvtUz8msId5W3M5zW3rtQkeJx5eqA77Gl8nxNxagl/exec';
+const GUESTBOOK_URL = 'https://script.google.com/macros/s/AKfycbxAFRS0gVTbFclKPB9ouqrfyiQOvtUz8msId5W3M5zW3rtQkeJx5eqA77Gl8nxNxagl/exec';
+/* ================= RSVP ================= */
 
 const rsvpForm = document.getElementById('rsvp-form');
 const rsvpResponse = document.getElementById('rsvp-response');
+
 rsvpForm.addEventListener('submit', e => {
     e.preventDefault();
+
     const submitButton = rsvpForm.querySelector('button');
     submitButton.disabled = true;
     submitButton.textContent = 'Đang gửi...';
 
-    fetch(RSVP_URL, { method: 'POST', body: new FormData(rsvpForm)})
-        .then(response => response.json())
-        .then(() => {
-            rsvpResponse.textContent = 'Cảm ơn bạn đã xác nhận!';
-            rsvpForm.reset();
-        })
-        .catch(error => {
-            rsvpResponse.textContent = 'Có lỗi xảy ra, vui lòng thử lại.';
-            console.error('Error!', error.message);
-        })
-        .finally(() => {
-            submitButton.disabled = false;
-            submitButton.textContent = 'Gửi Xác Nhận';
-        });
+    const formData = new FormData(rsvpForm);
+    formData.append("type", "rsvp");   // ✅ phân loại sheet
+
+    fetch(RSVP_URL, {
+        method: 'POST',
+        mode: 'no-cors',               // ✅ tránh lỗi CORS
+        body: formData
+    })
+    .then(() => {
+        rsvpResponse.textContent = 'Cảm ơn bạn đã xác nhận!';
+        rsvpForm.reset();
+    })
+    .catch(() => {
+        rsvpResponse.textContent = 'Có lỗi xảy ra, vui lòng thử lại.';
+    })
+    .finally(() => {
+        submitButton.disabled = false;
+        submitButton.textContent = 'Gửi Xác Nhận';
+    });
 });
+
+
+/* ================= GUESTBOOK ================= */
 
 const guestbookForm = document.getElementById('guestbook-form');
 const guestbookResponse = document.getElementById('guestbook-response');
+
 guestbookForm.addEventListener('submit', e => {
     e.preventDefault();
+
     const submitButton = guestbookForm.querySelector('button');
     submitButton.disabled = true;
     submitButton.textContent = 'Đang gửi...';
-    
-    fetch(GUESTBOOK_URL, { method: 'POST', body: new FormData(guestbookForm)})
-        .then(response => response.json())
-        .then(() => {
-            guestbookResponse.textContent = 'Chúng tôi đã nhận được lời chúc của bạn. Xin cảm ơn!';
-            guestbookForm.reset();
-        })
-        .catch(error => {
-            guestbookResponse.textContent = 'Có lỗi xảy ra, vui lòng thử lại.';
-            console.error('Error!', error.message);
-        })
-        .finally(() => {
-            submitButton.disabled = false;
-            submitButton.textContent = 'Gửi Lời Chúc';
-        });
+
+    const formData = new FormData(guestbookForm);
+    formData.append("type", "guestbook");   // ✅ phân loại sheet
+
+    fetch(GUESTBOOK_URL, {
+        method: 'POST',
+        mode: 'no-cors',
+        body: formData
+    })
+    .then(() => {
+        guestbookResponse.textContent = 'Chúng tôi đã nhận được lời chúc của bạn. Xin cảm ơn!';
+        guestbookForm.reset();
+    })
+    .catch(() => {
+        guestbookResponse.textContent = 'Có lỗi xảy ra, vui lòng thử lại.';
+    })
+    .finally(() => {
+        submitButton.disabled = false;
+        submitButton.textContent = 'Gửi Lời Chúc';
+    });
 });
+
 </script>
 
 </body>
