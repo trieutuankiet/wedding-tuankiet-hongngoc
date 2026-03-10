@@ -34,13 +34,13 @@ body {
   background-size: cover;
 }
 
-/* Overlay đỏ toàn trang */
+/* Overlay gradient che phủ toàn trang, giúp chữ dễ đọc hơn */
 body::before {
   content: '';
   position: fixed;
   top: 0; left: 0;
   width: 100%; height: 100%;
-  background: rgba(122,0,0,0.2);
+  background: linear-gradient(to bottom, rgba(70,0,0,0.5), rgba(70,0,0,0.3), rgba(70,0,0,0.5));
   z-index: 0;
 }
 
@@ -124,7 +124,12 @@ section.show {
   flex-direction: column;
 }
 
-/* TÊN VIẾT TAY */
+.sub-heading {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(18px, 4vw, 24px);
+    margin-bottom: 15px;
+}
+
 .hero h1 {
   font-family: 'Dancing Script', cursive;
   font-size: clamp(32px, 8vw, 72px);
@@ -184,7 +189,7 @@ section.show {
   display: block;
 }
 
-/* ===== CARD ===== */
+/* ===== CARD & FORM STYLING ===== */
 .card {
   max-width: 600px;
   width: 100%;
@@ -195,18 +200,52 @@ section.show {
   line-height: 2;
   font-size: clamp(14px, 3.5vw, 17px);
 }
+.card p { margin-bottom: 10px; }
 
 h2 {
   font-family: 'Playfair Display', serif;
   font-size: clamp(22px, 5vw, 36px);
-  margin-bottom: 10px;
+  margin-bottom: 20px;
 }
 
-/* ===== QR ===== */
-.qr-section img {
-  width: min(250px, 70vw);
-  margin-top: 20px;
-  border-radius: 15px;
+.form-container {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.form-container input, .form-container textarea, .form-container button {
+    width: 100%;
+    padding: 12px;
+    border-radius: 8px;
+    border: 1px solid rgba(255,255,255,0.3);
+    background: rgba(0,0,0,0.3);
+    color: white;
+    font-size: 16px;
+    font-family: 'Montserrat', sans-serif;
+}
+.form-container input::placeholder, .form-container textarea::placeholder {
+    color: rgba(255,255,255,0.6);
+}
+.form-container textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+.form-container button {
+    background: var(--main-red);
+    cursor: pointer;
+    font-weight: bold;
+    transition: background 0.3s;
+}
+.form-container button:hover {
+    background: var(--dark-red);
+}
+.radio-group {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin: 15px 0;
 }
 
 /* ===== HOA RƠI ===== */
@@ -242,27 +281,6 @@ h2 {
   border: 1px solid rgba(255,255,255,0.3);
   user-select: none;
 }
-
-/* ===== MOBILE RIÊNG ===== */
-@media (max-width: 480px) {
-  .hero h1 {
-    font-size: clamp(28px, 9vw, 40px);
-  }
-
-  .countdown {
-    gap: 8px;
-  }
-
-  .time-box {
-    min-width: 60px;
-    padding: 10px;
-  }
-
-  .card {
-    margin: 20px 10px;
-    padding: 20px 15px;
-  }
-}
 </style>
 </head>
 
@@ -273,11 +291,12 @@ h2 {
   <div class="envelope-box">
     <div class="flap"></div>
   </div>
-  <div class="open-text">Bấm vào để mở thiệp 💌</div>
+  <div class="open-text">Một lời mời đặc biệt đang chờ bạn 💌</div>
 </div>
 
 <!-- HERO -->
 <section class="hero show">
+  <p class="sub-heading">Save The Date</p>
   <h1 id="names">Tuấn Kiệt ❤️ Hồng Ngọc</h1>
   <p class="date">29 . 03 . 2026</p>
   <div class="countdown">
@@ -288,23 +307,61 @@ h2 {
   </div>
 </section>
 
+<!-- CÂU CHUYỆN -->
+<section>
+    <h2>Câu chuyện của chúng tôi</h2>
+    <div class="card">
+        <p>"Nơi tình yêu bắt đầu là nơi hai tâm hồn đồng điệu. Qua bao thăng trầm, chúng tôi đã tìm thấy nhau, cùng nhau vun đắp một tình yêu chân thành. Và hôm nay, chúng tôi hạnh phúc thông báo rằng một chương mới sắp mở ra."</p>
+        <p><strong>Hôn lễ của chúng tôi sẽ là khởi đầu cho hành trình ấy.</strong></p>
+    </div>
+</section>
+
+
 <!-- THÔNG TIN -->
 <section>
-  <h2>Trân trọng kính mời</h2>
+  <h2>Trân Trọng Kính Mời</h2>
   <div class="card">
-    <p>⏰ 16:30 – 18:00 | Chủ Nhật</p>
-    <p>📅 29/03/2026 (11/02 Âm lịch)</p>
-    <p>📍 Tại tư gia nhà gái</p>
+    <p>Gia đình chúng tôi trân trọng kính mời bạn và gia đình đến chung vui cùng chúng tôi tại:</p>
+    <p><strong>Lễ Thành Hôn</strong></p>
+    <p>⏰ <strong>Thời gian:</strong> 16:30 – 18:00 | Chủ Nhật, ngày 29/03/2026</p>
+    <p>(Tức ngày 11 tháng 02 năm Bính Ngọ)</p>
+    <p>📍 <strong>Địa điểm:</strong> Tại tư gia nhà gái</p>
     <p>Thôn Hạ 1, xã Sơn Động, tỉnh Bắc Ninh</p>
-    <p>Sự hiện diện của bạn là niềm vinh dự của gia đình tôi</p>
+    <p>Sự hiện diện của bạn là món quà vô giá và là niềm vinh hạnh lớn lao cho gia đình chúng tôi!</p>
   </div>
 </section>
 
-<!-- QR -->
-<section class="qr-section">
-  <h2>Gửi lời chúc tại</h2>
-  <img src="qr.jpg" alt="QR chuyển khoản mừng cưới">
+<!-- XÁC NHẬN THAM DỰ -->
+<section>
+    <h2>Phản Hồi Tham Dự</h2>
+    <div class="card">
+        <p>Để chúng tôi có thể đón tiếp bạn chu đáo nhất, xin vui lòng xác nhận sự tham dự của bạn trước ngày 20/03/2026 nhé!</p>
+        <form id="rsvp-form" class="form-container">
+            <input type="text" name="name" placeholder="Tên của bạn" required>
+            <div class="radio-group">
+                <label><input type="radio" name="attendance" value="Tham dự" checked> Sẽ tham dự</label>
+                <label><input type="radio" name="attendance" value="Không tham dự"> Rất tiếc</label>
+            </div>
+            <button type="submit">Gửi Xác Nhận</button>
+        </form>
+        <p id="rsvp-response" style="margin-top: 15px;"></p>
+    </div>
 </section>
+
+<!-- SỔ LƯU BÚT -->
+<section>
+    <h2>Gửi Lời Chúc</h2>
+    <div class="card">
+        <p>Những lời chúc phúc của bạn sẽ là hành trang quý giá trên chặng đường mới của chúng tôi.</p>
+        <form id="guestbook-form" class="form-container">
+            <input type="text" name="name" placeholder="Tên của bạn" required>
+            <textarea name="message" placeholder="Gửi lời chúc yêu thương..." required></textarea>
+            <button type="submit">Gửi Lời Chúc</button>
+        </form>
+        <p id="guestbook-response" style="margin-top: 15px;"></p>
+    </div>
+</section>
+
 
 <!-- ICON NHẠC -->
 <div id="music-toggle">🔇</div>
@@ -315,12 +372,11 @@ h2 {
 </audio>
 
 <script>
-const envelope = document.getElementById("envelope");
-const music    = document.getElementById("music");
-const names    = document.getElementById("names");
-const toggle   = document.getElementById("music-toggle");
-
-let isPlaying = false;
+const envelope   = document.getElementById("envelope");
+const music      = document.getElementById("music");
+const names      = document.getElementById("names");
+const toggle     = document.getElementById("music-toggle");
+let isPlaying    = false;
 
 /* Mở thiệp */
 envelope.addEventListener("click", function () {
@@ -371,12 +427,69 @@ for (let i = 0; i < 25; i++) {
 }
 
 /* Scroll effect */
-window.addEventListener("scroll", function () {
-  document.querySelectorAll("section").forEach(function (sec) {
-    if (sec.getBoundingClientRect().top < window.innerHeight - 100) {
-      sec.classList.add("show");
-    }
-  });
+const sections = document.querySelectorAll("section");
+const showOnScroll = () => {
+    sections.forEach(sec => {
+        if (sec.getBoundingClientRect().top < window.innerHeight - 100) {
+            sec.classList.add("show");
+        }
+    });
+};
+window.addEventListener("scroll", showOnScroll);
+showOnScroll(); // Hiển thị các section đầu tiên khi tải trang
+
+/* === XỬ LÝ FORM GỬI ĐẾN GOOGLE SHEETS === */
+
+// THAY THẾ URL NÀY BẰNG URL WEB APP GOOGLE APPS SCRIPT CỦA BẠN
+const RSVP_URL = 'URL-GOOGLE-SHEET-CUA-BAN';
+const GUESTBOOK_URL = 'URL-GOOGLE-SHEET-CUA-BAN';
+
+const rsvpForm = document.getElementById('rsvp-form');
+const rsvpResponse = document.getElementById('rsvp-response');
+rsvpForm.addEventListener('submit', e => {
+    e.preventDefault();
+    const submitButton = rsvpForm.querySelector('button');
+    submitButton.disabled = true;
+    submitButton.textContent = 'Đang gửi...';
+
+    fetch(RSVP_URL, { method: 'POST', body: new FormData(rsvpForm)})
+        .then(response => response.json())
+        .then(() => {
+            rsvpResponse.textContent = 'Cảm ơn bạn đã xác nhận!';
+            rsvpForm.reset();
+        })
+        .catch(error => {
+            rsvpResponse.textContent = 'Có lỗi xảy ra, vui lòng thử lại.';
+            console.error('Error!', error.message);
+        })
+        .finally(() => {
+            submitButton.disabled = false;
+            submitButton.textContent = 'Gửi Xác Nhận';
+        });
+});
+
+const guestbookForm = document.getElementById('guestbook-form');
+const guestbookResponse = document.getElementById('guestbook-response');
+guestbookForm.addEventListener('submit', e => {
+    e.preventDefault();
+    const submitButton = guestbookForm.querySelector('button');
+    submitButton.disabled = true;
+    submitButton.textContent = 'Đang gửi...';
+    
+    fetch(GUESTBOOK_URL, { method: 'POST', body: new FormData(guestbookForm)})
+        .then(response => response.json())
+        .then(() => {
+            guestbookResponse.textContent = 'Chúng tôi đã nhận được lời chúc của bạn. Xin cảm ơn!';
+            guestbookForm.reset();
+        })
+        .catch(error => {
+            guestbookResponse.textContent = 'Có lỗi xảy ra, vui lòng thử lại.';
+            console.error('Error!', error.message);
+        })
+        .finally(() => {
+            submitButton.disabled = false;
+            submitButton.textContent = 'Gửi Lời Chúc';
+        });
 });
 </script>
 
