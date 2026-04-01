@@ -199,8 +199,11 @@
     }
 
     .typing {
-      animation: typing 3s steps(30, end) forwards, blink .8s infinite;
+      animation: typing 3s steps(30, end) forwards,
+        blink .8s step-end 6;
     }
+
+
 
     @keyframes typing {
       from {
@@ -467,6 +470,18 @@
         display: none;
       }
     }
+
+    .hero h1 {
+      border-right: 3px solid var(--gold);
+    }
+
+    .hero h1.typing {
+      border-right: 3px solid var(--gold);
+    }
+
+    .hero h1:not(.typing) {
+      border-right: none;
+    }
   </style>
 </head>
 
@@ -548,12 +563,12 @@
     <div class="card">
       <p>Gia đình chúng tôi trân trọng kính mời bạn và gia đình đến chung vui cùng chúng tôi tại:</p>
       <p><strong>Lễ Thành Hôn</strong></p>
-      <p>⏰ <strong>Thời gian:</strong> 16:30 – 18:00 | Chủ Nhật, ngày 29/03/2026</p>
-      <p>(Tức ngày 11 tháng 02 năm Bính Ngọ)</p>
-      <p>📍 <strong>Địa điểm:</strong> Tại tư gia nhà gái</p>
-      <p>Thôn Hạ 1, xã Sơn Động, tỉnh Bắc Ninh</p>
+      <p>⏰ <strong>Thời gian:</strong> 11:05 | Chủ Nhật, ngày 12/04/2026</p>
+      <p>(Tức ngày 25 tháng 02 năm Bính Ngọ)</p>
+      <p>📍 <strong>Địa điểm:</strong> Tại tư gia nhà trai</p>
+      <p>Thôn Bùi Chung, xã Minh Tân, tỉnh Ninh Bình</p>
       <div style="margin-top:15px;">
-        <a href="https://maps.app.goo.gl/5RyPz3pQs8qyR4iW7?g_st=ic" target="_blank" style="
+        <a href="https://maps.app.goo.gl/p6nhtEhNrFYziT587" target="_blank" style="
             display:inline-block;
             padding:10px 18px;
             background: var(--gold);
@@ -575,7 +590,7 @@
   <section>
     <h2>Phản Hồi Tham Dự</h2>
     <div class="card">
-      <p>Để chúng tôi có thể đón tiếp bạn chu đáo nhất, xin vui lòng xác nhận sự tham dự của bạn trước ngày 20/03/2026
+      <p>Để chúng tôi có thể đón tiếp bạn chu đáo nhất, xin vui lòng xác nhận sự tham dự của bạn trước ngày 06/04/2026
         nhé!</p>
       <form id="rsvp-form" class="form-container">
         <input type="text" name="name" placeholder="Tên của bạn" required>
@@ -607,7 +622,7 @@
   <section class="qr-section">
     <div class="card">
       <p>Nếu bạn không thể đến trực tiếp, bạn vẫn có thể gửi lời chúc đến chúng tôi qua mã QR bên dưới.</p>
-      <img src="qr.jpg" alt="QR mừng cưới">
+      <img src="ttkiet.jpg" alt="QR mừng cưới">
       <p id="copy-msg" style="margin-top:10px;"></p>
     </div>
   </section>
@@ -638,6 +653,10 @@
       }).catch(() => { });
 
       names.classList.add("typing");
+      setTimeout(() => {
+        names.classList.add("no-cursor");
+      }, 3000);
+
     });
 
     /* Bật / tắt nhạc */
